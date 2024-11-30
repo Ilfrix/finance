@@ -34,6 +34,14 @@
           </li>
           <li class="nav-item">
             <a 
+              class="nav-link {% if view_name == 'spending:all_spending' %} active {% endif %}"
+              href="{% url 'spending:all_spending' %}"
+            >
+              Расходы
+            </a> 
+          </li>
+          <li class="nav-item">
+            <a 
               class="nav-link {% if view_name == 'wallet:money' %} active {% endif %}"
               href="{% url 'wallet:money' %}"
             >

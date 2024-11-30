@@ -20,6 +20,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('wallet/', include('wallet.urls')),
+    path('spend/', include('spending.urls')),
 ]
 
 if settings.DEBUG:
