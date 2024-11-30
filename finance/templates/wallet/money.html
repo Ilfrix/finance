@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block title %}
+Счета
+{% endblock %}
+
+{% block content %}
+{% if "/update/" in request.path %}
+<div class="card-body">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="Отправить" %}
+</form>
+<a href="{% url 'wallet:money' wallet_id %}">К кошельку</a>
+</div>
+{% else %}
+<div>
+    <p><b>Наличные:</b> {{ wallet.cash }}</p>
+    <p><b>Карта:</b> {{ wallet.card }}</p>
+    <p><b>Депозит:</b> {{ wallet.deposit }} </p>
+    <a href="{% url 'wallet:update' wallet_id %}">Изменить данные</a>
+</div>
+{% endif %}
+{% endblock %}
