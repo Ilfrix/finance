@@ -8,6 +8,5 @@ def all_spending(request):
     context = {
         'spendings': spendings,
     }
-    print(context)
 
     return render(request, template, context)
