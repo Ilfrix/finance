@@ -1,33 +1,35 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render
 from wallet.models import Wallet
 from .forms import WalletForm
 
-def money(request, pk=0):
+def money(request):
     template = 'wallet/money.html'
-    wallet = get_object_or_404(
-        Wallet,
-        pk=pk
-    )
+    user_id = request.user.id
+    wallet = None
+    try:
+        wallet = Wallet.objects.filter(user_id=user_id)[0]
+    except Exception:
+        pass
+
     context = {
         'wallet': wallet,
-        'wallet_id': pk
+        'wallet_id': request.user.id
     }
 
     return render(request, template, context)
 
-def update_info(request, pk=0):
+def update_info(request):
     template = 'wallet/money.html'
-    instance = get_object_or_404(Wallet, pk=pk)
+    instance = Wallet.objects.filter(user_id=request.user.id)[0]
     form = WalletForm(request.POST or None, instance=instance)
     context = {'form': form,
-               'wallet_id': pk}
+               'wallet_id': request.user.id}
 
     if form.is_valid():
         form.save()
         cash = form.cleaned_data['cash']
         card = form.cleaned_data['card']
         deposit = form.cleaned_data['deposit']
-
 
         context.update({
             'cash': cash,

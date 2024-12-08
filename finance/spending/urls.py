@@ -6,6 +6,7 @@ app_name = 'spending'
 
 urlpatterns = [
     path('', views.all_spending, name='all_spending'),
+    path('update/', views.update_info, name='update'),
     # path('<int:pk>/', views.money, name='spending'),
     # path('add/<int:pk>/', views.update_info, name='add_spend'),
 ]

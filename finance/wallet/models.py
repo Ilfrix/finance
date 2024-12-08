@@ -22,6 +22,8 @@ class Wallet(models.Model):
         verbose_name='Депозит'
     )
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+
     class Meta:
         verbose_name = 'Кошелек'
         verbose_name_plural = 'Кошельки'

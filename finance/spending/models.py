@@ -8,7 +8,10 @@ User = get_user_model()
 class Category(models.Model):
     title = models.CharField(max_length=256, verbose_name='Название')
     slug = models.SlugField(max_length=64, unique=True, verbose_name='Слаг')
-    output_order = models.PositiveSmallIntegerField(default=100, verbose_name='Порядок отображения')
+    output_order = models.PositiveSmallIntegerField(
+        default=100,
+        verbose_name='Порядок отображения'
+    )
 
     class Meta:
         verbose_name = 'Категория'
@@ -31,6 +34,8 @@ class Spend(models.Model):
         related_name='spendings',
         verbose_name='Категория',
     )
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     class Meta:
         verbose_name = 'Трата'

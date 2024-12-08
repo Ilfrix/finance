@@ -12,14 +12,14 @@
     {% bootstrap_form form %}
     {% bootstrap_button button_type="submit" content="Отправить" %}
 </form>
-<a href="{% url 'wallet:money' wallet_id %}">К кошельку</a>
+<a href="{% url 'wallet:money'%}">К кошельку</a>
 </div>
 {% else %}
 <div>
     <p><b>Наличные:</b> {{ wallet.cash }}</p>
     <p><b>Карта:</b> {{ wallet.card }}</p>
     <p><b>Депозит:</b> {{ wallet.deposit }} </p>
-    <a href="{% url 'wallet:update' wallet_id %}">Изменить данные</a>
+    <a href="{% url 'wallet:update' %}">Изменить данные</a>
 </div>
 {% endif %}
 {% endblock %}

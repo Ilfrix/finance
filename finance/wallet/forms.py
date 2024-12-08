@@ -1,6 +1,4 @@
 from django import forms
-from django.core.exceptions import ValidationError
-
 from .models import Wallet
 
 
@@ -11,7 +9,6 @@ class WalletForm(forms.ModelForm):
             'cash', 'card', 'deposit',
         )
 
-    
     def clean(self):
         super().clean()
         cash = self.cleaned_data['cash']

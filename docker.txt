@@ -1,3 +1,3 @@
-sudo docker run --name pgdb -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -e POSTGRES_DB=finance -p 5432:5432 -d postgres
-sudo docker exec -it c4079cf10127 bash
+sudo docker run --name pgdb --rm -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -e POSTGRES_DB=finance -v ./postgres-data:/var/lib/postgresql/data -p 5432:5432 -d postgres
+sudo docker exec -it pgdb bash
 psql -U admin -d finance

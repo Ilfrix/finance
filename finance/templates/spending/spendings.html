@@ -5,13 +5,14 @@
 {% endblock %}
 
 {% block content %}
-{% if "/add/" in request.path %}
+{% if "/update/" in request.path %}
 <div class="card-body">
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type="submit" content="Отправить" %}
 </form>
+<a href="{% url 'spending:all_spending'%}">Все расходы</a>
 </div>
 {% else %}
 <div>
@@ -19,6 +20,7 @@
         <p><b>Сумма:</b> {{ spend.money }}</p>
         <p><b>Категория:</b> {{ spend.category.title }}</p>
     {% endfor %}
+    <a href="{% url 'spending:update' %}">Изменить данные</a>
 </div>
 {% endif %}
 {% endblock %}
