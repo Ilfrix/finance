@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-{% if "/update/" in request.path %}
+{% if "/update/" in request.path or "/create/" in request.path %}
 <div class="card-body">
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -19,8 +19,13 @@
     {% for spend in spendings %}
         <p><b>Сумма:</b> {{ spend.money }}</p>
         <p><b>Категория:</b> {{ spend.category.title }}</p>
+        {% if not forloop.last %}
+        <hr>
+        {% endif %}
     {% endfor %}
     <a href="{% url 'spending:update' %}">Изменить данные</a>
+    <br>
+    <a href="{% url 'spending:create' %}">Добавить</a>
 </div>
 {% endif %}
 {% endblock %}
