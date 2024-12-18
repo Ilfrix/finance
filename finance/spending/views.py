@@ -8,7 +8,6 @@ def all_spending(request):
     context = {
         'spendings': spendings,
     }
-
     return render(request, template, context)
 
 def update_info(request):
@@ -17,7 +16,6 @@ def update_info(request):
     form = SpendForm(request.POST or None, instance=instance)
     context = {'form': form,
                'wallet_id': request.user.id}
-
     if form.is_valid():
         form.save()
         money = form.cleaned_data['money']

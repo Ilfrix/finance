@@ -13,4 +13,3 @@ class SpendForm(forms.ModelForm):
         super().clean()
         money = self.cleaned_data['money']
         category_id = self.cleaned_data['category']
-        # user_id = self.cleaned_data['user_id']
